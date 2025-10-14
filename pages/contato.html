@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contato  - ABC das Emoções</title>
+    <link rel="stylesheet" href="/assets/css/styles.css" />
+  <link href="https://fonts.googleapis.com/css2?family=DynaPuff:wght@400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!--MENU-->
+    <div id="header-holder"></div>
+
+    <main class="container">
+        <section id="contato">
+          <div class="contato-wrap">
+
+            <!-- coluna esquerda -->
+            <div class="contato-info">
+              <h2>Contato</h2>
+              <p>
+                Entre em contato conosco para saber mais sobre nossos encontros lúdicos
+                e como promover o desenvolvimento emocional das crianças.
+              </p>
+
+              <p class="contato-label">Fale</p>
+              <p class="contato-dado telefone">61 99945-3755</p>
+
+              <p class="contato-label">Envie</p>
+              <p class="contato-dado email">
+                <a href="mailto:atendimento@abcdasemoçoes.com.br">
+                  atendimento@abcdasemoções.com.br
+                </a>
+              </p>
+            </div>
+
+            <!-- coluna direita (formulário) -->
+            <form class="contato-form" novalidate>
+              <!-- NOME DO GESTOR -->
+              <label for="gestor">Nome do Gestor*</label>
+              <input 
+                id="gestor"
+                name="gestor"
+                type="text"
+                placeholder="Digite o nome aqui"
+                pattern="^[A-Za-zÀ-ÖØ-öø-ÿ\s]{3,60}$"
+                title="O nome deve conter apenas letras e espaços (mínimo 3 caracteres)"
+                required
+              >
+
+              <!-- NOME DA ESCOLA -->
+              <label for="escola">Nome da escola</label>
+              <input 
+                id="escola"
+                name="escola"
+                type="text"
+                placeholder="Digite o nome da escola"
+                pattern="^[A-Za-zÀ-ÖØ-öø-ÿ0-9\s]{3,80}$"
+                title="Informe um nome válido (mínimo 3 caracteres)"
+              >
+
+              <!-- EMAIL -->
+              <label for="email">Seu e-mail*</label>
+              <input 
+                id="email"
+                name="email"
+                type="email"
+                placeholder="Digite seu e-mail"
+                pattern="^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
+                title="Digite um e-mail válido (exemplo: nome@dominio.com)"
+                required
+              >
+
+              <!-- WHATSAPP -->
+              <label for="whatsapp">Whatsapp*</label>
+              <input 
+                id="whatsapp"
+                name="whatsapp"
+                type="tel"
+                inputmode="numeric"
+                placeholder="Número do WhatsApp (somente números)"
+                pattern="^\d{10,11}$"
+                minlength="10"
+                maxlength="11"
+                title="Digite apenas números, com DDD (exemplo: 61999999999)"
+                required
+              >
+
+              <!-- MENSAGEM -->
+              <label for="mensagem">Mensagem ou dúvida*</label>
+              <textarea 
+                id="mensagem"
+                name="mensagem"
+                rows="4"
+                minlength="10"
+                maxlength="500"
+                placeholder="Escreva sua mensagem"
+                title="A mensagem deve conter entre 10 e 500 caracteres"
+                required
+              ></textarea>
+
+              <!-- BOTÃO -->
+              <button type="submit" class="btn-enviar">Enviar mensagem</button>
+            </form>
+
+
+          </div>
+        </section>
+
+    </main>
+
+    <!--FOOTER-->
+    <div id="footer-holder"></div>
+
+    
+  <!-- WHATSAPP FLOAT (partial) -->
+  <div id="whatsapp-holder"></div>
+
+    <script src="/assets/javascript/script.js"></script>
+</body>
+</html>

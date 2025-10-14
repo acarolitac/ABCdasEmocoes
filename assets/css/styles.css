@@ -1,0 +1,896 @@
+/* ===== VARS & BASE ===== */
+:root {
+  --green:#379f48;
+  --blue:#67a6de;
+  --font:'DynaPuff', cursive;
+}
+* { box-sizing: border-box; }
+html, body { margin:0; }
+body {
+  font-family: var(--font);
+  background:#fff;
+  padding-top:110px; /* compensa header fixo (100px + folga) */
+}
+
+/* ===== HEADER/MENU ===== */
+.site-header{
+  position:fixed; top:0; left:0; width:100%; z-index:1000;
+  background:#fff; border-bottom:1px solid #eee;
+  height:100px; display:flex; align-items:center;
+  transition: height .25s ease, box-shadow .25s ease;
+}
+.site-header.scrolled{
+  height:80px; /* encolhe suave ao rolar */
+  box-shadow:0 2px 10px rgba(0,0,0,.1);
+}
+
+.nav-container{
+  max-width:1200px; margin:0 auto; padding:0 40px;
+  display:flex; align-items:center; justify-content:space-between; height:100%;
+  width:100%;
+}
+
+.logo{ height:70px; transition:height .25s ease; padding-right:100px; }
+.site-header.scrolled .logo{ height:58px; }
+
+.navbar ul{
+  list-style:none; display:flex; gap:60px; margin:0; padding:0;
+}
+.navbar a {
+  text-decoration: none;
+  color: var(--blue);
+  font-weight: 600;
+  font-size: 1.05rem;
+  padding: 10px 0;
+  position: relative;
+  transition: color 0.2s ease;
+}
+
+/* link ativo */
+.navbar a.active {
+  color: var(--green);
+}
+.navbar a.active::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -6px;
+  width: 100%;
+  height: 2px;
+  background: var(--green);
+  box-shadow: 0 0px var(--green);
+}
+
+/* hover com sublinhado */
+.navbar a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -6px;
+  width: 0;
+  height: 2px;
+  background: var(--green);
+  box-shadow: 0 0px var(--green);
+  transition: width 0.3s ease;
+}
+
+.navbar a:hover {
+  color: var(--green);
+}
+
+.navbar a:hover::after {
+  width: 100%;
+}
+
+/* Hambúrguer (mobile) */
+.menu-toggle{
+  display:none; background:none; border:0; font-size:28px; color:var(--blue); cursor:pointer;
+}
+
+/* ===== MOBILE ===== */
+@media (max-width:768px){
+  .menu-toggle{ display:block; }
+  .navbar{ position:absolute; right:20px; top:calc(100% - 10px); }
+  .navbar ul{
+    display:none; flex-direction:column; gap:16px; background:#fff; padding:18px 20px;
+    border-radius:14px; box-shadow:0 10px 25px rgba(0,0,0,.06);
+  }
+  .navbar.show ul{ display:flex; }
+  .logo{ padding-right:0; height:56px; }
+}
+
+/* ===== FONTES ===== */
+h2 {
+  font-family: 'DynaPuff', cursive;
+  font-weight: 700;
+  font-size: clamp(28px, 3.5vw, 56px);
+  color: #6f2a79;
+  text-align: left;
+  max-width: 1200px;
+  margin: 0 auto 30px;
+}
+
+/* ===== MAIN ===== */
+main section {
+  padding: 80px 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* ===== PÁGINA INICIAL/HOME PAGE ===== */
+
+/* ===== PILARES ===== */
+/* ===== SEÇÃO PILARES ===== */
+#pilares {
+  position: relative;
+  width: 100%;
+  max-width: none;
+  padding: 100px 0 140px; /* altura interna */
+  overflow: hidden;
+  isolation: isolate;
+  display: flex;
+  justify-content: center; /* centraliza o .pilares-wrap */
+}
+
+/* Fundo azul em toda a largura */
+#pilares::before, #sobre::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: url("/assets/img/fundopilares.png") no-repeat center center;
+  background-size: cover;
+  z-index: -1;
+}
+
+/* Container centralizado */
+.pilares-wrap {
+  width: 100%;
+  max-width: 1200px;
+  text-align: center; /* centraliza o texto e as pílulas */
+  padding: 0 20px;
+}
+
+/* Título */
+#pilares h2 {
+  font-family: 'DynaPuff', cursive;
+  font-weight: 700;
+  font-size: clamp(32px, 4vw, 64px);
+  color: #6f2a79;
+  margin-bottom: 60px;
+}
+
+/* Container das pílulas */
+.pilares-pills {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 24px;
+}
+
+/* Pílulas */
+.pill {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 14px 36px;
+  border-radius: 999px;
+  color: #fff;
+  font-family: 'DynaPuff', cursive;
+  font-weight: 700;
+  font-size: clamp(16px, 2vw, 24px);
+  white-space: nowrap;
+  box-shadow: 0 6px 18px rgba(0,0,0,.15);
+  transition: transform .2s ease, box-shadow .2s ease;
+}
+
+.pill:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 24px rgba(0,0,0,.18);
+}
+
+/* Cores */
+.pill-1 { background: #e74f69; }  /* rosa */
+.pill-2 { background: #6a6aff; }  /* lilás */
+.pill-3 { background: #f7b51a; }  /* amarelo */
+.pill-4 { background: #32b36b; }  /* verde */
+.pill-5 { background: #ff914d; }  /* laranja */
+
+/* Responsivo */
+@media (max-width: 768px) {
+  .pill {
+    font-size: 18px;
+    padding: 12px 26px;
+  }
+}
+
+
+/* ===== BENEFÍCIOS DO PROGRAMA ===== */
+#beneficios-programa {
+  position: relative;
+  width: 100%;
+  max-width: none;             /* remove o limite de 1200px */
+  margin: 0;                   /* remove centralização automática */
+  padding: 100px 0 140px;
+  isolation: isolate;
+  background-color: #b4b0e1; /* cor de fundo */
+  overflow: hidden;
+}
+
+/* fundo decorativo (imagem grande por trás) — opcional usar ::before */
+#beneficios-programa .decor.bg{
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;                  /* troque p/ contain se preferir */
+  z-index: -1;
+  pointer-events: none;
+}
+
+/* grid das 3 colunas */
+.beneficios-grid{
+  max-width: 1200px;
+  margin: 0 auto 26px;
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: 28px;
+}
+
+/* Card base */
+.benef-card{
+  position: relative;
+  border-radius: 30px;
+  padding: 28px 24px 34px;
+  box-shadow: 0 14px 30px rgba(0,0,0,.12);
+  min-height: 260px;
+  margin-top: 60px;
+}
+
+/* badge (título em SVG) sobreposto */
+.benef-card .badge{
+  position: absolute;
+  top: -24px;                         /* acima do topo */
+  left: 28px;
+  height: 48px;                       /* ajuste conforme seu SVG */
+  width: auto;
+  display: block;
+  filter: drop-shadow(0 6px 8px rgba(0,0,0,.15));
+}
+
+/* texto interno */
+.benef-card p{
+  margin: 28px 0 0;
+  font-family: 'DynaPuff', cursive;
+  font-weight: 700;
+  font-size: clamp(16px, 2.2vw, 22px);
+  line-height: 1.35;
+}
+
+/* cores específicas para lembrar o mock */
+.card-educadoras{
+  background: #f2bee9;                /* rosa clarinho */
+  color: #3a0d3f;                      /* roxo escuro (texto) */
+  grid-column: 1 / span 4;
+}
+.card-criancas{
+  background: #f2de8a;                /* amarelo */
+  color: #6b4f0f;                      /* marrom/dourado */
+  grid-column: 5 / span 4;
+}
+.card-familias{
+  background: #95f0cf;                /* verde água */
+  color: #0f5a46;
+  grid-column: 9 / span 4;
+}
+
+/* botão "ver detalhes" */
+.cta-benef{
+  display: inline-block;
+  margin-top: 30px;
+  margin: 18px auto 0;
+  padding: 12px 26px;
+  border-radius: 999px;
+  background: #e64f67;                /* rosa do botão */
+  color: #fff;
+  font-family: 'DynaPuff', cursive;
+  font-weight: 700;
+  text-decoration: none;
+  box-shadow: 0 10px 18px rgba(230,79,103,.35);
+  transition: transform .2s ease, box-shadow .2s ease, filter .2s ease;
+  position: relative;
+  left: 50%;
+  transform: translateX(-50%);
+}
+.cta-benef:hover{
+  transform: translateX(-50%) translateY(-2px);
+  box-shadow: 0 14px 24px rgba(48, 3, 99, 0.45);
+  filter: brightness(1.02);
+  background: #483483;
+}
+
+/* mascote sobreposto no canto inferior esquerdo */
+#beneficios-programa .decor.mascote {
+  position: absolute;
+  left: clamp(0px, 8vw, 120px);
+  bottom: -10px;
+  width: clamp(180px, 26vw, 360px); /* antes era 140–280px */
+  height: auto;
+  pointer-events: none;
+}
+
+/* responsivo */
+@media (max-width: 1024px){
+  .beneficios-grid{ gap: 22px; }
+  .card-educadoras{ grid-column: 1 / span 6; }
+  .card-criancas{   grid-column: 7 / span 6; }
+  .card-familias{   grid-column: 1 / span 12; }
+}
+@media (max-width: 760px){
+  .beneficios-grid{
+    grid-template-columns: 1fr;
+  }
+  .card-educadoras, .card-criancas, .card-familias{
+    grid-column: 1 / -1;
+  }
+  .benef-card .badge{
+    top: -18px;
+    left: 20px;
+    height: 42px;
+  }
+}
+
+/* ===== CONHEÇA NOSSOS MATERIAIS ===== */
+#conheca-materiais{
+  position: relative;
+  width: 100%;
+  max-width: none;                /* ocupa a largura toda (sem bordas brancas) */
+  margin: 0;
+  padding: 100px 0 120px;
+  background: #d8e9f5;           /* azul clarinho do fundo */
+  overflow: hidden;
+  isolation: isolate;
+}
+
+/* container central */
+#conheca-materiais .materiais-wrap{
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+  text-align: center;
+}
+
+/* badge do topo */
+#conheca-materiais .badge{
+  display: block;
+  height: clamp(40px, 7vw, 72px);
+  margin: 0 auto 18px;
+  filter: drop-shadow(0 6px 10px rgba(0,0,0,.12));
+}
+
+/* imagem principal */
+#conheca-materiais .materiais-hero img{
+  width: min(720px, 90%);
+  height: auto;
+  display: block;
+  margin: 12px auto 18px;
+}
+
+/* texto */
+#conheca-materiais .materiais-texto{
+  max-width: 920px;
+  margin: 0 auto 22px;
+  color: #6f2a79;                 /* roxo */
+  font-family: 'DynaPuff', cursive;
+  font-weight: 700;
+  font-size: clamp(16px, 2vw, 22px);
+  line-height: 1.35;
+}
+
+/* botão */
+#conheca-materiais .cta-conheca{
+  margin-top: 30px;
+  display: inline-block;
+  padding: 12px 28px;
+  border-radius: 999px;
+  background: #e64f67;
+  color: #fff;
+  text-decoration: none;
+  font-family: 'DynaPuff', cursive;
+  font-weight: 700;
+  box-shadow: 0 12px 24px rgba(230,79,103,.35);
+  transition: transform .2s ease, box-shadow .2s ease, filter .2s ease;
+}
+#conheca-materiais .cta-conheca:hover{
+  transform: translateY(-2px);
+  box-shadow: 0 14px 24px rgba(48, 3, 99, 0.45);
+  filter: brightness(1.02);
+  background: #483483;
+}
+
+/* decorativos grandes (as formas nas laterais) */
+#conheca-materiais .decor{
+  position: absolute;
+  z-index: -1;            /* atrás do conteúdo */
+  pointer-events: none;
+  opacity: .95;
+}
+#conheca-materiais .decor-left{
+  left: max(-120px, -8vw);
+  top: -40px;
+  width: clamp(240px, 36vw, 520px);
+}
+#conheca-materiais .decor-right{
+  right: max(-120px, -8vw);
+  bottom: -60px;
+  width: clamp(260px, 40vw, 620px);
+}
+
+/* responsivo */
+@media (max-width: 768px){
+  #conheca-materiais{ padding: 80px 0 100px; }
+  #conheca-materiais .badge{ height: 52px; }
+}
+
+/* ===== SEÇÃO: O QUE É O ABC ===== */
+#sobre{
+  position: relative;
+  width: 100%;
+  max-width: none;
+  /* os mascotes já controlam a largura, então não precisamos de padding lateral aqui */
+  padding: 100px 0 120px;
+  overflow: hidden;
+  isolation: isolate;
+}
+
+/* mascotes no topo (com gutter nas laterais e espaçamento fluido) */
+.sobre-mascotes{
+  list-style: none;
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  width: min(1200px, 92vw);        /* ~4% de margem por lado */
+  margin: 0 auto 50px;             /* centraliza + respiro abaixo */
+  padding: 0;                       /* gutter já vem da largura */
+  gap: clamp(16px, 3vw, 36px);
+}
+.sobre-mascotes li{ flex: 0 0 auto; }
+
+.sobre-mascotes img{
+  display: block;
+  height: clamp(80px, 12vw, 150px);
+  width: auto;
+  transition: transform .2s ease;
+}
+.sobre-mascotes img:hover{ transform: scale(1.05); }
+
+/* container central do conteúdo (texto + foto) */
+.sobre-wrap{
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;                 /* margem interna só pro conteúdo */
+}
+
+/* grid 2 colunas */
+.sobre-grid{
+  display: grid;
+  grid-template-columns: 1.15fr 1fr; /* texto maior */
+  align-items: center;
+  gap: clamp(20px, 4vw, 48px);
+}
+
+/* título + texto com splash */
+.sobre-text{
+  position: relative;
+  padding: clamp(18px, 2vw, 28px) clamp(20px, 2.4vw, 32px);
+}
+.sobre-text h2{
+  color: #e64f67;
+  font-family: 'DynaPuff', cursive;
+  font-weight: 700;
+  font-size: clamp(28px, 4.4vw, 64px);
+  margin: 0 0 14px;
+}
+.sobre-text p{
+  color: #483d8b;
+  font-family: 'DynaPuff', cursive;
+  font-weight: 700;
+  font-size: clamp(16px, 2.1vw, 24px);
+  line-height: 1.35;
+  margin: 0;
+}
+
+/* splash atrás do texto */
+.sobre-text::before{
+  content: "";
+  position: absolute;
+  left: -8vw;
+  top: -30px;
+  width: 120%;
+  height: calc(100% + 90px);
+  background: url("/assets/img/fundo-sobre-splash.png") no-repeat left top;
+  background-size: cover;  /* use 'contain' se sua arte pedir */
+  z-index: -1;
+}
+
+/* foto à direita */
+.sobre-foto{ margin: 0; }
+.sobre-foto img{
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 28px;
+  box-shadow: 0 20px 40px rgba(0,0,0,.12);
+  object-fit: cover;
+}
+
+/* responsivo */
+@media (max-width: 900px){
+  .sobre-grid{ grid-template-columns: 1fr; }
+  .sobre-text::before{
+    left: -5vw;
+    width: 110%;
+    height: calc(100% + 60px);
+  }
+  .sobre-mascotes{
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: clamp(14px, 4vw, 24px);
+    width: min(640px, 92vw);       /* mantém gutter no mobile */
+  }
+}
+
+/* ===== PÁGINA SOBRE O QUE É O ABC ===== */
+/* ===== SEÇÃO: O QUE É O ABC ===== */
+/* ===== SEÇÃO SALLUZ ===== */
+/* ===== SEÇÃO SALLUZ ===== */
+#salluz{
+  position: relative;
+  width: 100%;
+  max-width: none;
+  padding: 80px 20px 100px;
+  text-align: center;
+}
+
+/* linha superior */
+.salluz-top{
+  position: relative;
+  max-width: 1000px;
+  margin: 0 auto 24px;
+}
+
+/* logo Salluz centralizado */
+#img-salluz{
+  display: block;
+  height: clamp(70px, 10vw, 130px);
+  margin: 0 auto;
+  filter: drop-shadow(0 4px 8px rgba(0,0,0,.08));
+}
+
+/* mascote CÉREBRO — aumentado */
+.mascote-cerebro{
+  position: absolute;
+  right: clamp(0px, 5vw, 100px); /* distância da borda */
+  top: 50%;
+  transform: translateY(-50%);
+  width: clamp(160px, 20vw, 260px); /* 👈 aumentado */
+  height: auto;
+  pointer-events: none;
+  z-index: 1;
+  filter: drop-shadow(0 8px 12px rgba(0,0,0,.15));
+}
+
+/* texto */
+.salluz-text{
+  max-width: 900px;
+  margin: 0 auto;
+}
+.salluz-text p{
+  font-family: 'Roboto', sans-serif;
+  font-weight: 700;
+  font-size: clamp(16px, 2vw, 24px);
+  line-height: 1.5;
+  color: #56585e;
+  margin: 0;
+  padding: clamp(12px, 2vw, 0);
+}
+
+/* responsivo — cérebro desce abaixo do logo */
+@media (max-width: 768px){
+  .mascote-cerebro{
+    position: static;
+    transform: none;
+    margin: 20px auto 0;
+    width: clamp(160px, 45vw, 220px); /* maior no mobile também */
+  }
+  .salluz-top{ margin-bottom: 12px; }
+}
+
+#intro-metodologia {
+  position: relative;
+  width: 100%;
+  max-width: none;
+  padding: 100px 20px 160px;
+  background-color: #943f92; /* roxo */
+  overflow: hidden;
+  isolation: isolate;
+  text-align: center;
+}
+
+/* fundo amarelo decorativo */
+#intro-metodologia .decor.bg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: -1;
+  pointer-events: none;
+  opacity: 0.9;
+}
+
+/* imagem principal */
+#intro-metodologia .foto-topo {
+  width: min(90%, 780px);
+  height: auto;
+  display: block;
+  margin: 0 auto 30px;
+  border-radius: 20px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+}
+
+/* mascote central */
+#intro-metodologia .mascote {
+  width: clamp(120px, 22vw, 200px);
+  height: auto;
+  display: block;
+  margin: 20px auto 10px;
+  filter: drop-shadow(0 6px 8px rgba(0,0,0,.2));
+}
+
+/* texto centralizado */
+#intro-metodologia p {
+  font-family: 'DynaPuff', cursive;
+  color: #fff;
+  font-weight: 700;
+  font-size: clamp(16px, 2vw, 22px);
+  line-height: 1.5;
+  max-width: 900px;
+  margin: 0 auto 50px;
+}
+
+/* segunda imagem */
+#intro-metodologia .foto-base {
+  width: min(90%, 780px);
+  height: auto;
+  display: block;
+  margin: 0 auto 30px;
+  border-radius: 20px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+}
+
+/* botão “fale conosco” */
+#intro-metodologia .cta-conheca {
+  display: inline-block;
+  margin-top: 20px;
+  padding: 12px 28px;
+  border-radius: 999px;
+  background: #e64f67;
+  color: #fff;
+  text-decoration: none;
+  font-family: 'DynaPuff', cursive;
+  font-weight: 700;
+  box-shadow: 0 12px 24px rgba(230,79,103,.35);
+  transition: transform .2s ease, box-shadow .2s ease;
+}
+
+#intro-metodologia .cta-conheca:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 16px 30px rgba(48,3,99,.4);
+    filter: brightness(1.02);
+  background: #483483;
+}
+
+/* responsivo */
+@media (max-width: 768px) {
+  #intro-metodologia {
+    padding: 80px 10px 120px;
+  }
+  #intro-metodologia .foto-topo,
+  #intro-metodologia .foto-base {
+    width: 95%;
+  }
+}
+
+/* ===== CONTATO ===== */
+#contato {
+  padding: 100px 20px;
+  width: 100%;
+  max-width: none;
+  background: #d8e9f5; /* temporário — só cor sólida */
+  font-family: 'DynaPuff', cursive;
+}
+
+.contato-wrap {
+  display: grid;
+  grid-template-columns: 1fr 1.2fr;
+  gap: 50px;
+  max-width: 1200px;
+  margin: 0 auto;
+  align-items: start;
+}
+
+/* ===== LADO ESQUERDO ===== */
+.contato-info h2 {
+  color: #4b3693;
+  font-weight: 700;
+  font-size: clamp(32px, 4vw, 56px);
+  margin-bottom: 20px;
+}
+
+.contato-info p {
+  color: #483d8b;
+  font-size: clamp(16px, 2vw, 20px);
+  font-weight: 600;
+  line-height: 1.5;
+  margin-bottom: 16px;
+}
+
+.contato-label {
+  color: #4b3693;
+  font-weight: 700;
+  margin-top: 20px;
+}
+
+.contato-dado {
+  font-size: clamp(18px, 2.2vw, 22px);
+  font-weight: 700;
+}
+
+.telefone {
+  color: #ffb800; /* amarelo */
+}
+
+.email a {
+  color: #e64f67; /* rosa */
+  text-decoration: none;
+}
+
+.email a:hover {
+  text-decoration: underline;
+}
+
+/* ===== FORMULÁRIO ===== */
+.contato-form {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.contato-form label {
+  color: #483d8b;
+  font-size: clamp(15px, 1.8vw, 18px);
+  font-weight: 600;
+}
+
+.contato-form input,
+.contato-form textarea {
+  width: 100%;
+  border: 2px solid #b6a6d9;
+  border-radius: 12px;
+  padding: 10px 14px;
+  font-family: 'DynaPuff', cursive;
+  font-size: clamp(15px, 1.6vw, 17px);
+  color: #483d8b;
+  outline: none;
+  transition: border-color .2s ease;
+}
+
+.contato-form input:focus,
+.contato-form textarea:focus {
+  border-color: #6f2a79;
+}
+
+.btn-enviar {
+  background: #943f92;
+  color: #fff;
+  border: none;
+  border-radius: 999px;
+  padding: 12px 30px;
+  font-size: clamp(15px, 1.8vw, 18px);
+  font-family: 'DynaPuff', cursive;
+  font-weight: 700;
+  margin-top: 12px;
+  align-self: flex-start;
+  cursor: pointer;
+  box-shadow: 0 8px 18px rgba(0,0,0,.15);
+  transition: all .2s ease;
+}
+
+.btn-enviar:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 22px rgba(0,0,0,.25);
+  background: #6f2a79;
+}
+
+/* ===== RESPONSIVO ===== */
+@media (max-width: 900px) {
+  .contato-wrap {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+  .btn-enviar {
+    align-self: center;
+  }
+}
+
+
+
+/* ===== FOOTER ===== */
+.footer{ background:#8a3a8b; color:#fff; padding:40px 20px; }
+.footer-container{
+  max-width:1200px; margin:0 auto; display:flex; justify-content:space-between;
+  align-items:flex-start; flex-wrap:wrap; gap:30px;
+}
+.footer-col{ flex:1 1 250px; }
+.footer-col h4{ font-size:1.1rem; margin-bottom:10px; font-weight:700; }
+.footer-col p, .footer-col a{ color:#fff; text-decoration:none; font-weight:400; line-height:1.6; }
+.footer-col a:hover{ text-decoration:underline; }
+.footer-col.social{ display:flex; align-items:center; justify-content:flex-end; gap:18px; }
+.footer-col.social img{ width:22px; height:22px; filter:brightness(0) invert(1); transition:transform .2s ease; }
+.footer-col.social img:hover{ transform:scale(1.15); }
+
+@media (max-width:768px){
+  .footer-container{ flex-direction:column; align-items:center; text-align:center; }
+  .footer-col.social{ justify-content:center; margin-top:10px; }
+}
+
+/* ===== BOTÃO FLUTUANDO WHATSAPP ===== */
+.whatsapp-float {
+  position: fixed;
+  right: 18px;
+  bottom: 18px;
+  width: 70px;              /* botão maior */
+  height: 70px;
+  display: grid;
+  place-items: center;
+  line-height: 0;
+  border-radius: 50%;
+  background: none;         /* REMOVE o verde de fundo */
+  box-shadow: 0 10px 20px rgba(0,0,0,.18), 0 6px 6px rgba(0,0,0,.12);
+  z-index: 1200;
+  transition: transform .2s ease, box-shadow .2s ease, filter .2s ease;
+}
+
+.whatsapp-float:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 24px rgba(0,0,0,.22), 0 8px 8px rgba(0,0,0,.14);
+  filter: brightness(1.05);
+}
+
+/* a imagem AGORA cobre todo o botão */
+.whatsapp-float img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;        /* mantém formato redondo */
+  object-fit: cover;         /* garante preenchimento completo */
+}
+
+/* efeito de pulsar suave */
+.whatsapp-float::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  box-shadow: 0 0 0 0 rgba(37, 211, 102, .45);
+  animation: wpp-pulse 2.2s ease-out infinite;
+  pointer-events: none;
+}
+
+@keyframes wpp-pulse {
+  0%   { box-shadow: 0 0 0 0   rgba(37,211,102,.45); }
+  70%  { box-shadow: 0 0 0 20px rgba(37,211,102,0); }
+  100% { box-shadow: 0 0 0 0   rgba(37,211,102,0); }
+}
+
