@@ -702,12 +702,11 @@ main section {
   }
 }
 
-/* ===== CONTATO ===== */
+/* ===== PÁGINA CONTATO ===== */
 #contato {
   padding: 100px 20px;
   width: 100%;
   max-width: none;
-  background: #d8e9f5; /* temporário — só cor sólida */
   font-family: 'DynaPuff', cursive;
 }
 
@@ -823,6 +822,776 @@ main section {
     align-self: center;
   }
 }
+/* =========================
+   METODOLOGIA — SEM CONFLITOS
+   ========================= */
+
+/* ===== HERO METODOLOGIA (SECTION 1) ===== */
+.met-hero{
+  display: grid;
+  grid-template-columns: 1.1fr .9fr;
+  align-items: center;
+  gap: clamp(20px, 4vw, 60px);
+  padding: clamp(40px, 6vw, 80px) 0;
+}
+
+.met-hero .descricao{
+  margin: 0;
+  font-family: 'DynaPuff', cursive;
+  font-weight: 700;
+  color: #483d8b;
+  font-size: clamp(18px, 2.2vw, 28px);
+  line-height: 1.35;
+  letter-spacing: .3px;
+  text-shadow: 0 1px 0 rgba(0,0,0,.04);
+}
+
+.met-hero .descricao .destaque{
+  color: #f8b41b;
+  font-weight: 700;
+}
+
+.met-hero .media{ justify-self: center; }
+.met-hero .media img{
+  width: clamp(220px, 38vw, 420px);
+  height: auto;
+  filter: drop-shadow(0 16px 22px rgba(0,0,0,.15));
+  transform: translateY(0) scale(1);
+  animation: s1-bob 4.5s ease-in-out infinite;
+  will-change: transform;
+}
+
+/* animações */
+@keyframes s1-bob{
+  0%{transform:translateY(0) scale(1)}
+  50%{transform:translateY(-8px) scale(1.005)}
+  100%{transform:translateY(0) scale(1)}
+}
+
+.met-hero.reveal .descricao{
+  animation: s1-in-left .7s ease-out both;
+}
+.met-hero.reveal .media img{
+  animation: s1-in-right .7s ease-out both, s1-bob 4.5s .7s ease-in-out infinite;
+}
+
+@keyframes s1-in-left{from{opacity:0;transform:translateX(-24px)}to{opacity:1;transform:translateX(0)}}
+@keyframes s1-in-right{from{opacity:0;transform:translateX(24px) scale(.98)}to{opacity:1;transform:translateX(0) scale(1)}}
+
+/* responsivo hero */
+@media (max-width:900px){
+  .met-hero{ grid-template-columns:1fr; text-align:center; }
+  .met-hero .descricao{ margin-inline:auto; max-width:38ch; }
+  .met-hero .media img{ width: clamp(220px, 60vw, 420px); }
+}
+
+/* ===== Faixas (títulos com “fita”) – pode usar em qualquer seção ===== */
+.ribbon {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background: #8a3a8b;
+  color: #fff;
+  padding: 10px 18px;
+  border-radius: 18px;
+  font-family: 'DynaPuff', cursive;
+  font-weight: 700;
+  box-shadow: 0 8px 16px rgba(0,0,0,.12);
+  margin: 24px auto 14px;
+}
+.ribbon.green { background: #3bb67d; }
+
+/* ===== METRICS (cards pequenos) DA S1 ===== */
+.met-s1-metrics{
+  display: grid;
+  grid-template-columns: repeat(3, minmax(180px, 1fr));
+  gap: 16px clamp(14px, 3vw, 22px);
+  max-width: 880px;
+  margin: 8px auto 28px;
+}
+.met-s1-metrics .met-card{
+  background: #ffc9ff;
+  border-radius: 18px;
+  padding: 16px 16px 14px;
+  box-shadow: 0 10px 18px rgba(0,0,0,.10);
+  min-height: 118px;
+}
+.met-s1-metrics .met-card .num{
+  display: block;
+  font-family: 'DynaPuff', cursive;
+  font-weight: 700;
+  color: #7a2aa8;
+  font-size: clamp(26px, 3.2vw, 38px);
+  line-height: 1;
+  margin-bottom: 6px;
+}
+.met-s1-metrics .met-card p{
+  margin: 0;
+  font-family: 'DynaPuff', cursive;
+  font-weight: 600;
+  color: #5f4e9b;
+  font-size: clamp(12px, 1.5vw, 14px);
+  line-height: 1.25;
+}
+
+/* responsivo metrics S1 */
+@media (max-width: 900px){
+  .met-s1-metrics{ grid-template-columns: repeat(2, minmax(180px, 1fr)); }
+}
+@media (max-width: 560px){
+  .met-s1-metrics{ grid-template-columns: 1fr; }
+}
+
+/* ===== “RECURSOS EXCLUSIVOS” (pílulas) – nomes exclusivos ===== */
+.met-recursos-grid{
+  display: grid;
+  grid-template-columns: repeat(2, minmax(220px, 1fr));
+  gap: 16px clamp(14px, 3vw, 22px);
+  max-width: 760px;
+  margin: 10px auto 0;
+}
+.met-pill{
+  background: #ff5b66;
+  color: #fff;
+  text-align: center;
+  padding: 14px 18px;
+  border-radius: 16px;
+  font-family: 'DynaPuff', cursive;
+  font-weight: 700;
+  font-size: clamp(14px, 1.8vw, 16px);
+  box-shadow: 0 10px 18px rgba(0,0,0,.10);
+  transition: transform .15s ease, box-shadow .15s ease, filter .15s ease;
+}
+.met-pill:hover{
+  transform: translateY(-2px);
+  box-shadow: 0 14px 24px rgba(0,0,0,.14);
+  filter: brightness(1.02);
+}
+
+/* responsivo pílulas */
+@media (max-width: 560px){
+  .met-recursos-grid{ grid-template-columns: 1fr; }
+}
+
+/* ===== SEÇÃO 2 — LADO A LADO ===== */
+.s2 .met-s2-layout{
+  display: grid;
+  grid-template-columns: 1.05fr 0.95fr; /* esquerda > direita */
+  gap: clamp(28px, 5vw, 60px);
+  align-items: start;
+}
+
+/* filhos dentro do grid principal (mantém seu HTML) */
+.s2 .s2-grid2{ display: contents; }
+
+/* imagens da s2 */
+.s2 .s2-col{ min-width: 0; }
+.s2 .panel{ margin: 0; }
+.s2 .panel img{
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* Ribbons da s2 */
+.ribbon-purple{ background:#8a3a8b; }
+.ribbon-green{  background:#3bb67d; }
+.s2-ribbon{
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: clamp(16px, 3vw, 24px);
+}
+.s2-ribbon::before{
+  content:"";
+  width: 26px;
+  height: 26px;
+  background: radial-gradient(circle at 40% 40%, #ffcc3a 0 45%, transparent 46% 100%),
+              radial-gradient(circle at 60% 60%, #ffcc3a 0 45%, transparent 46% 100%),
+              radial-gradient(circle at 60% 40%, #ffcc3a 0 45%, transparent 46% 100%),
+              radial-gradient(circle at 40% 60%, #ffcc3a 0 45%, transparent 46% 100%);
+  filter: drop-shadow(0 4px 6px rgba(0,0,0,.15));
+  transform: rotate(-12deg);
+}
+.s2-ribbon-left{  transform: rotate(-3.5deg); }
+.s2-ribbon-right{ transform: rotate( 3.5deg); }
+
+/* ===== COLUNA ESQUERDA – CARDS (S2) ===== */
+.met-s2-metrics{
+  display: grid;
+  grid-template-columns: repeat(3, minmax(170px, 1fr));
+  gap: clamp(12px, 2.4vw, 18px);
+  justify-items: stretch;
+}
+.met-metric-card{
+  background: #ffc9ff;
+  border-radius: 18px;
+  padding: 16px 16px 14px;
+  box-shadow: 0 10px 18px rgba(0,0,0,.10);
+  min-height: 120px;
+  text-align: left;
+}
+.met-metric-card .num{
+  display:block;
+  font-family:'DynaPuff', cursive;
+  font-weight:700;
+  color:#7a2aa8;
+  font-size: clamp(24px, 3vw, 34px);
+  line-height:1;
+  margin-bottom: 6px;
+}
+.met-metric-card p{
+  margin: 0;
+  font-family:'DynaPuff', cursive;
+  font-weight:600;
+  color:#5f4e9b;
+  font-size: clamp(12px, 1.45vw, 14px);
+  line-height:1.28;
+}
+
+/* ===== COLUNA DIREITA – PÍLULAS (S2) — reutiliza .met-recursos-grid & .met-pill ===== */
+
+/* ===== ENTRADA/ANIMAÇÕES (opcional) ===== */
+.s2 .met-metric-card, 
+.s2 .met-pill, 
+.s2 .s2-ribbon{ 
+  opacity:0; 
+  transform: translateY(10px); 
+}
+.s2.reveal .met-metric-card, 
+.s2.reveal .met-pill, 
+.s2.reveal .s2-ribbon{
+  animation: s2-in .5s ease-out forwards;
+}
+.s2.reveal .met-metric-card:nth-child(1){ animation-delay:.05s }
+.s2.reveal .met-metric-card:nth-child(2){ animation-delay:.10s }
+.s2.reveal .met-metric-card:nth-child(3){ animation-delay:.15s }
+.s2.reveal .met-metric-card:nth-child(4){ animation-delay:.20s }
+.s2.reveal .met-metric-card:nth-child(5){ animation-delay:.25s }
+.s2.reveal .met-metric-card:nth-child(6){ animation-delay:.30s }
+
+.s2.reveal .met-pill:nth-child(1){ animation-delay:.05s }
+.s2.reveal .met-pill:nth-child(2){ animation-delay:.10s }
+.s2.reveal .met-pill:nth-child(3){ animation-delay:.15s }
+.s2.reveal .met-pill:nth-child(4){ animation-delay:.20s }
+.s2.reveal .met-pill:nth-child(5){ animation-delay:.25s }
+.s2.reveal .met-pill:nth-child(6){ animation-delay:.30s }
+
+@keyframes s2-in{
+  from{ opacity:0; transform: translateY(12px); }
+  to  { opacity:1; transform: translateY(0); }
+}
+
+/* ===== RESPONSIVO S2 ===== */
+@media (max-width: 1024px){
+  .s2 .met-s2-layout{ grid-template-columns: 1fr; }
+  .s2-ribbon-left, .s2-ribbon-right{ transform: rotate(0deg); }
+  .met-s2-metrics{ grid-template-columns: repeat(3, minmax(150px,1fr)); }
+}
+@media (max-width: 760px){
+  .met-s2-metrics{ grid-template-columns: repeat(2, minmax(150px,1fr)); }
+  .met-recursos-grid{ grid-template-columns: 1fr; }
+}
+@media (max-width: 460px){
+  .met-s2-metrics{ grid-template-columns: 1fr; }
+}
+
+/* ===== SECTION 3 – Nossos encontros ===== */
+#encontros {
+  position: relative;
+  padding: clamp(60px, 7vw, 110px) 0;
+  isolation: isolate;
+}
+
+/* título amarelinho e centralizado */
+#encontros .s3-header .title {
+  font-family: 'DynaPuff', cursive;
+  font-weight: 700;
+  color: #f8b41b;                 /* amarelo do mock */
+  text-align: center;
+  margin: 0 0 clamp(26px, 4vw, 40px);
+}
+
+/* grid dos cards (imagens) */
+#encontros .s3-grid {
+  width: min(1150px, 92vw);
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(260px, 1fr));
+  gap: clamp(18px, 2.8vw, 32px) clamp(22px, 3.5vw, 46px);
+  align-items: start;
+}
+
+/* cada “card” é uma figura com imagem */
+#encontros .thumb {
+  margin: 0;
+  border-radius: 14px;
+  overflow: hidden;               /* arredonda cantos das artes com fundo */
+  filter: drop-shadow(0 10px 18px rgba(0,0,0,.12));
+}
+
+#encontros .thumb img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+/* mascotinho (última imagem) no canto inferior direito */
+#encontros .s3-grid .thumb:last-child {
+  justify-self: end;
+  align-self: end;
+  max-width: clamp(2000px, 22vw, 280px);  /* reduz um pouco para parecer o mock */
+  border-radius: 0;                       /* mascot não precisa arredondar */
+  filter: drop-shadow(0 8px 14px rgba(0,0,0,.15));
+}
+
+/* ===== Responsivo ===== */
+@media (max-width: 1100px) {
+  #encontros .s3-grid {
+    grid-template-columns: repeat(2, minmax(240px, 1fr));
+  }
+  #encontros .s3-grid .thumb:last-child {
+    grid-column: 2;               /* mantém mais à direita quando 2 colunas */
+  }
+}
+
+@media (max-width: 680px) {
+  #encontros .s3-grid {
+    grid-template-columns: 1fr;
+    gap: 18px 18px;
+  }
+  #encontros .s3-grid .thumb:last-child {
+    grid-column: auto;
+    justify-self: center;        /* mascot abaixo centralizado no mobile */
+    max-width: clamp(180px, 46vw, 260px);
+  }
+}
+
+/* ===== SECTION 4 – Nossos personagens ===== */
+.section.s4 {
+  position: relative;
+  padding: clamp(60px, 8vw, 110px) 0;
+  isolation: isolate;
+}
+
+/* Título e texto (cores pedidas) */
+.section.s4 .title {
+  font-family: 'DynaPuff', cursive;
+  font-weight: 700;
+  color: #6f2a79;                      /* roxo do título */
+  text-align: center;
+  margin: 0 0 clamp(10px, 2.8vw, 16px);
+}
+
+.section.s4 .descricao {
+  font-family: 'DynaPuff', cursive;
+  font-weight: 700;
+  color: #483d8b;                      /* roxo-azulado do texto */
+  text-align: center;
+  font-size: clamp(16px, 2vw, 22px);
+  line-height: 1.45;
+  max-width: 900px;
+  margin: 0 auto clamp(26px, 4vw, 40px);
+}
+
+/* ===== SECTION 4 – Nossos personagens (lado a lado de verdade) ===== */
+.section.s4{
+  position: relative;
+  padding: clamp(60px, 8vw, 110px) 0;
+  isolation: isolate;
+}
+
+/* ===== Ajuste de alinhamento à esquerda ===== */
+.section.s4 .title,
+.section.s4 .descricao {
+  text-align: left;                 /* alinha à esquerda */
+  margin-left: clamp(40px, 10vw, 120px); /* empurra do lado esquerdo */
+  margin-right: auto;               /* evita centralização */
+}
+/* ===== LAYOUT EM GRID: 2 colunas ===== */
+.s4 .s4-wrapper{
+  max-width: 1100px;               /* ajuste ao seu container */
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;  /* ESQ | DIR */
+  grid-auto-rows: auto;
+  column-gap: clamp(24px, 5vw, 80px);
+  row-gap: clamp(16px, 3vw, 32px);
+  align-items: center;
+}
+
+/* ANULA QUALQUER ABSOLUTE antigo que empilha tudo */
+.s4 .s4-wrapper .img{ 
+  position: static !important;     /* <- chave para parar de empilhar */
+  display: block;
+  height: auto;
+}
+
+/* ESQUERDA (topo): Davi & LeLê */
+.s4 .s4-wrapper .img-top-left{
+  grid-column: 1;
+  grid-row: 1;
+  justify-self: center;
+  width: clamp(280px, 34vw, 440px);
+}
+
+/* DIREITA (ocupa de cima a baixo): Emoções */
+.s4 .s4-wrapper .img-right-middle{
+  grid-column: 2;
+  grid-row: 1 / span 2;            /* fica centralizado na coluna direita */
+  justify-self: center;
+  width: clamp(340px, 40vw, 560px);
+}
+
+/* ESQUERDA (embaixo): Pelúcias */
+.s4 .s4-wrapper .img-bottom-left{
+  grid-column: 1;
+  grid-row: 2;
+  justify-self: center;
+  width: clamp(240px, 30vw, 360px);
+}
+
+/* ===== MOBILE: empilha bonito ===== */
+@media (max-width: 760px){
+  .s4 .s4-wrapper{
+    grid-template-columns: 1fr;
+  }
+  .s4 .s4-wrapper .img-top-left,
+  .s4 .s4-wrapper .img-right-middle,
+  .s4 .s4-wrapper .img-bottom-left{
+    grid-column: 1;
+    grid-row: auto;
+    width: min(88%, 520px);
+    justify-self: center;
+  }
+}
+
+/* fundo padrão para essas páginas */
+body.pag-metodologia,
+body.pag-materiais,
+body.pag-contato {
+  background-color: #d8e9f5;
+  background-image: url("../img/fundopilares.png");
+  background-repeat: no-repeat;
+  background-position: center top;
+  background-size: cover;
+  background-attachment: fixed;
+}
+
+/* ===== PÁGINA CONHEÇA NOSSOS MATERIAIS ===== */
+/* ===== CONHEÇA NOSSOS MATERIAIS – HERO ===== */
+#materiais-intro{
+  position: relative;
+  width: 100%;
+  max-width: none;
+  padding: clamp(70px, 9vw, 110px) 20px clamp(40px, 6vw, 70px);
+  text-align: center;
+  isolation: isolate;          /* garante que o pseudo da base não vaze */
+}
+
+/* faixinha “Conheça nossos materiais” */
+#materiais-intro .badge{
+  display: block;
+  height: clamp(44px, 7vw, 78px);
+  margin: 0 auto clamp(18px, 3vw, 28px);
+  filter: drop-shadow(0 8px 16px rgba(0,0,0,.12));
+  transform: rotate(-3deg);    /* levemente inclinada como no mock */
+}
+
+/* bloco da imagem principal com “base” oval */
+#materiais-intro .materiais-hero{
+  position: relative;
+  width: min(720px, 90%);
+  margin: 0 auto clamp(18px, 3vw, 28px);
+}
+
+/* oval sob a imagem (imita o chão do mock) */
+#materiais-intro .materiais-hero::after{
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: -10px;
+  transform: translateX(-50%);
+  width: 88%;
+  height: clamp(26px, 5vw, 44px);
+  opacity: .95;
+  border-radius: 999px;
+  filter: blur(0.4px) drop-shadow(0 8px 14px rgba(0,0,0,.12));
+  z-index: -1;
+}
+
+/* imagem do kit */
+#materiais-intro .materiais-hero img{
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+/* texto */
+#materiais-intro p{
+  font-family: 'DynaPuff', cursive;
+  font-weight: 700;
+  color: #5f4e9b;                 /* cor pedida */
+  max-width: 880px;
+  margin: clamp(16px, 2.8vw, 24px) auto 0;
+  font-size: clamp(16px, 2vw, 22px);
+  line-height: 1.45;
+}
+
+/* ajustes responsivos finos */
+@media (max-width: 560px){
+  #materiais-intro .badge{ height: 56px; transform: rotate(-2deg); }
+  #materiais-intro .materiais-hero{ width: 94%; }
+  #materiais-intro .materiais-hero::after{ width: 90%; }
+}
+
+#para-criancas h2 {
+  color: #f8b41b;        /* amarelo */
+  font-family: 'DynaPuff', cursive;
+  font-weight: 700;
+}
+
+#para-criancas {
+  position: relative;
+  width: 100%;
+  max-width: none;
+  text-align: center;
+  padding: clamp(80px, 10vw, 120px) 20px;
+  overflow: hidden;
+  isolation: isolate;
+}
+
+/* texto introdutório */
+#para-criancas p {
+  font-family: 'DynaPuff', cursive;
+  font-weight: 700;
+  color: #483d8b;
+  font-size: clamp(16px, 2vw, 22px);
+  line-height: 1.4;
+  max-width: 800px;
+  margin: 0 auto 60px;
+}
+
+/* GRID GERAL (4 cards → 2x2) */
+.materiais-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: clamp(40px, 5vw, 80px);
+  justify-items: center;
+  align-items: start;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+/* bloco individual */
+.material-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+/* imagem principal (kit) */
+.material-item img {
+  width: clamp(260px, 36vw, 480px);
+  height: auto;
+  display: block;
+  margin-bottom: 12px;
+  filter: drop-shadow(0 8px 16px rgba(0,0,0,.15));
+}
+
+/* faixa com idade (ex: "2 anos") */
+.idade {
+  display: inline-block;
+  font-family: 'DynaPuff', cursive;
+  font-weight: 700;
+  font-size: clamp(14px, 1.8vw, 20px);
+  color: #fff;
+  padding: 6px 18px;
+  border-radius: 999px;
+  margin-top: -28px;
+  margin-bottom: 14px;
+  box-shadow: 0 6px 10px rgba(0,0,0,.15);
+}
+
+/* cores da faixa */
+.idade-amarelo { background: #f8b41b; }
+.idade-roxo    { background: #6f2a79; }
+
+/* lista dos materiais */
+.material-item ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.material-item li {
+  font-family: 'DynaPuff', cursive;
+  font-weight: 700;
+  font-size: clamp(16px, 2vw, 22px);
+  line-height: 1.5;
+}
+
+/* cores específicas */
+.material-item:first-child li {
+  color: #f8b41b; /* amarelo */
+}
+.material-item:last-child li {
+  color: #6f2a79; /* roxo */
+}
+
+/* separador + entre os itens */
+.material-item li:not(:last-child)::after {
+  content: " +";
+  color: inherit;
+  margin-left: 4px;
+}
+
+/* ===== PARA EDUCADORAS ===== */
+#para-educadoras{
+  position: relative;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: clamp(60px, 8vw, 100px) 20px;
+  display: grid;
+  grid-template-columns: 1.1fr 1fr;   /* imagem maior à esquerda */
+  align-items: center;
+  gap: clamp(20px, 4vw, 40px);
+}
+
+/* imagem à esquerda ocupando a “altura” do título + parágrafo */
+#para-educadoras img{
+  grid-column: 1 / 2;
+  grid-row: 1 / 3;
+  width: min(520px, 42vw);
+  height: auto;
+  justify-self: center;
+  filter: drop-shadow(0 12px 22px rgba(0,0,0,.12));
+}
+
+/* título à direita */
+#para-educadoras h2{
+  grid-column: 2 / 3;
+  grid-row: 1 / 2;
+  margin: 0 0 8px 0;
+  font-family: 'DynaPuff', cursive;
+  font-weight: 700;
+  font-size: clamp(28px, 3.6vw, 56px);
+  color: #943f92; /* roxo do print */
+  text-align: left;
+}
+
+/* texto à direita, abaixo do título */
+#para-educadoras p{
+  grid-column: 2 / 3;
+  grid-row: 2 / 3;
+  margin: 0;
+  color: #696263;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 700;
+  font-size: clamp(16px, 2vw, 22px);
+  line-height: 1.5;
+  text-align: left;
+  max-width: 540px;            /* não deixa o bloco esticar demais */
+}
+
+/* responsivo: empilha e centraliza no mobile */
+@media (max-width: 900px){
+  #para-educadoras{
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+  #para-educadoras img{
+    grid-column: 1 / -1; grid-row: auto;
+    width: min(500px, 80vw);
+  }
+  #para-educadoras h2,
+  #para-educadoras p{
+    grid-column: 1 / -1; grid-row: auto;
+    text-align: center;
+    max-width: 700px;
+    margin-left: auto; margin-right: auto;
+  }
+}
+
+/* responsivo */
+@media (max-width: 768px) {
+  #para-criancas {
+    padding: 60px 16px 80px;
+  }
+  .material-item img {
+    width: 80%;
+  }
+}
+
+/* ===== SEÇÃO: PARA ESCOLAS E FAMÍLIAS ===== */
+#para-escolas-familias {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(40px, 6vw, 80px);
+  padding: clamp(80px, 10vw, 120px) 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+  flex-wrap: wrap; /* garante quebra no mobile */
+}
+
+/* imagem do mascote */
+#para-escolas-familias img {
+  width: clamp(260px, 34vw, 400px);
+  height: auto;
+  filter: drop-shadow(0 10px 18px rgba(0, 0, 0, 0.1));
+}
+
+/* bloco de texto à direita */
+#para-escolas-familias .text-content {
+  flex: 1;
+  min-width: 300px;
+  max-width: 580px;
+}
+
+/* título */
+#para-escolas-familias h2 {
+  font-family: 'DynaPuff', cursive;
+  font-weight: 700;
+  color: #3aad7e; /* verde */
+  font-size: clamp(26px, 3vw, 42px);
+  margin: 0 0 14px 0;
+}
+
+/* parágrafo */
+#para-escolas-familias p {
+  font-family: 'DynaPuff', cursive;
+  font-weight: 600;
+  color: #5f4e9b; /* roxo-azulado */
+  font-size: clamp(16px, 1.8vw, 20px);
+  line-height: 1.5;
+  margin: 0;
+  text-align: left;
+}
+
+/* responsivo — imagem sobe no mobile */
+@media (max-width: 860px) {
+  #para-escolas-familias {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  #para-escolas-familias img {
+    order: -1;
+    width: clamp(240px, 60vw, 360px);
+  }
+
+  #para-escolas-familias .text-content {
+    max-width: 90%;
+  }
+
+  #para-escolas-familias p {
+    text-align: center;
+  }
+}
+
 
 
 
