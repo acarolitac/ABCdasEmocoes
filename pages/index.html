@@ -11,22 +11,50 @@
   <!-- MENU (partial) -->
   <div id="header-holder"></div>
 
+    <!-- BANNERS -->
+      <div id="banner"></div>
+
+    <script>
+    (async function() {
+      const container = document.getElementById("banner");
+
+      // 1. Carrega o HTML do banner
+      const res = await fetch("/partials/banners/banners.html");
+      const html = await res.text();
+      container.innerHTML = html;
+
+      // 2. Carrega dinamicamente o arquivo banners.js
+      await new Promise((resolve, reject) => {
+        const script = document.createElement("script");
+        script.src = "/partials/banners/banners.js";
+        script.onload = resolve;
+        script.onerror = reject;
+        document.body.appendChild(script);
+      });
+
+      // 3. Inicializa o carrossel (initBanner está dentro de banners.js)
+      if (typeof window.initBanner === "function") {
+        window.initBanner(container);
+      }
+    })();
+    </script>
+
   <!-- CONTEÚDO PRINCIPAL -->
   <main class="container">
 
-    <!-- Seção Pilares -->
-    <section id="pilares">
-      <div class="pilares-wrap">
-        <h2>Nossos pilares</h2>
-        <div class="pilares-pills">
-          <span class="pill pill-1">Educação emocional</span>
-          <span class="pill pill-2">Neurociência</span>
-          <span class="pill pill-3">Arte – Educação</span>
-          <span class="pill pill-4">Pedagogia afetiva</span>
-          <span class="pill pill-5">Psicologia positiva</span>
-        </div>
+  <!-- Seção Pilares -->
+  <section id="pilares"> 
+    <div class="pilares-wrap">
+      <h2>Nossos pilares</h2>
+      <div class="pilares-pills">
+        <span class="pill pill-1">Educação emocional</span>
+        <span class="pill pill-2">Neurociência</span>
+        <span class="pill pill-3">Arte – Educação</span>
+        <span class="pill pill-4">Pedagogia afetiva</span>
+        <span class="pill pill-5">Psicologia positiva</span>
       </div>
-    </section>
+    </div>
+  </section>
 
     <!-- Seção Benefícios do Programa -->
     <section id="beneficios-programa">
@@ -37,8 +65,7 @@
         <article class="benef-card card-educadoras">
           <img class="badge" src="/assets/img/educadorasTitulo.svg" alt="Educadoras">
           <p>
-            Treinamentos mensais online e ao vivo, com especialistas no
-            desenvolvimento infantil.
+            Capacitações semanais, por meio de videoaulas gravadas, com especialistas e profissionais da infância.
           </p>
         </article>
 
@@ -56,8 +83,7 @@
         <article class="benef-card card-familias">
           <img class="badge" src="/assets/img/familiasTitulo.svg" alt="Famílias">
           <p>
-            Palestras mensais online e ao vivo, com especialistas em educação
-            parental.
+            Palestras semanais gravadas com especialistas em educação parental e desenvolvimento infantil.
           </p>
         </article>
       </div>

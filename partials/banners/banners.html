@@ -1,0 +1,53 @@
+<!-- COMPONENTE DE BANNERS / CARROSSEL FULLSCREEN -->
+<link rel="stylesheet" href="/partials/banners/banners.css">
+
+<div class="carousel">
+
+    <div class="slides" id="slides">
+
+        <!-- SLIDE 1 -->
+        <div class="slide">
+            <a href="/pages/sobreABC.html" target="_blank">
+                <picture>
+                    <source media="(max-width: 767px)" srcset="/assets/img/BannerMobile1.png">
+                    <img src="/assets/img/BannerDesktop1.png" alt="Banner 1">
+                </picture>
+            </a>
+        </div>
+
+        <!-- SLIDE 2 -->
+        <div class="slide">
+            <picture>
+                <source media="(max-width: 767px)" srcset="/assets/img/BannerMobile2.png">
+                <img src="/assets/img/BannerDesktop2.png" alt="Banner 2">
+            </picture>
+    </div>
+
+
+        <!-- SLIDE 3 -->
+        <div class="slide">
+            <a href="/pages/contato.html" target="_blank">
+                <picture>
+                    <source media="(max-width: 767px)" srcset="/assets/img/BannerMobile3.png">
+                    <img src="/assets/img/BannerDesktop3.png" alt="Banner 3">
+                </picture>
+            </a>
+        </div>
+
+
+    </div>
+
+    <!-- Controles -->
+    <button class="control prev" id="prev">‹</button>
+    <button class="control next" id="next">›</button>
+
+    <!-- Indicadores -->
+    <div class="indicators" id="dots">
+        <button class="active" data-index="0"></button>
+        <button data-index="1"></button>
+        <button data-index="2"></button>
+    </div>
+
+</div>
+
+<script src="/partials/banners/banners.js"></script>

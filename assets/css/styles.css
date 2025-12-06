@@ -4,12 +4,23 @@
   --blue:#67a6de;
   --font:'DynaPuff', cursive;
 }
-* { box-sizing: border-box; }
+* {
+    box-sizing: border-box;
+    max-width: 100%;
+}
+
 html, body { margin:0; }
 body {
   font-family: var(--font);
   background:#fff;
-  padding-top:110px; /* compensa header fixo (100px + folga) */
+  padding-top:100px; /* compensa header fixo (100px + folga) */
+  margin: 0;
+  width: 100%;
+  overflow-x: hidden !important;
+}
+
+section, div {
+    max-width: 100%;
 }
 
 /* ===== HEADER/MENU ===== */
@@ -130,6 +141,151 @@ main section {
   isolation: isolate;
   display: flex;
   justify-content: center; /* centraliza o .pilares-wrap */
+}
+
+/* ---------- Modal estilo "cartão + ribbon" ---------- */
+:root {
+  --modal-bg: #f7dff0;      /* cor do card (mude para combinar) */
+  --modal-text: #2b2340;
+  --modal-muted: #6b5b7b;
+  --overlay: rgba(11,18,30,0.48);
+  --radius: 20px;
+  --shadow: 0 18px 38px rgba(36,32,56,0.14);
+}
+
+/* container */
+.modal { 
+  display: none;
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  font-family: 'DynaPuff', cursive;
+}
+.modal.is-open { display: flex; }
+
+/* overlay */
+.modal__overlay {
+  position: absolute;
+  inset: 0;
+  background: var(--overlay);
+  opacity: 0;
+  transition: opacity .22s ease;
+}
+.modal.is-open .modal__overlay { opacity: 1; }
+
+/* dialog (cartão) */
+.modal__dialog {
+  position: relative;
+  background: var(--modal-bg);
+  border-radius: var(--radius);
+  max-width: 640px;
+  width: 100%;
+  padding: 34px 28px;
+  box-shadow: var(--shadow);
+  transform: translateY(14px) scale(.995);
+  opacity: 0;
+  transition: transform .22s cubic-bezier(.2,.9,.2,1), opacity .22s ease;
+  z-index: 2;
+  border: 1px solid rgba(30,24,40,0.04);
+}
+
+/* animação de entrada */
+.modal.is-open .modal__dialog { transform: translateY(0) scale(1); opacity: 1; }
+
+/* ribbon no topo (posição absoluta relativa ao diálogo) */
+.modal__ribbon {
+  position: absolute;
+  left: 22px;
+  top: -18px;
+  display: inline-flex;
+  align-items: center;
+  height: 36px;
+  padding: 0 14px 0 18px;
+  background: #7f4aa7; /* cor default, será sobrescrita via JS */
+  color: white;
+  font-weight: 800;
+  font-size: 0.95rem;
+  border-radius: 8px;
+  box-shadow: 0 8px 18px rgba(34,20,60,0.12);
+  transform: rotate(-6deg);
+  letter-spacing: 0.02em;
+}
+
+/* ponta da ribbon (triângulo) */
+.modal__ribbon::after {
+  content: "";
+  position: absolute;
+  right: -12px;
+  top: 0;
+  width: 0;
+  height: 0;
+  border-left: 12px solid rgba(0,0,0,0.06);
+  border-top: 18px solid transparent;
+  border-bottom: 18px solid transparent;
+  transform: translateX(0);
+  filter: brightness(.98);
+}
+
+/* título grande (opcional: podemos esconder se a ribbon já tiver o título) */
+.modal__title {
+  margin: 4px 0 10px;
+  font-size: 1.25rem;
+  color: var(--modal-text);
+  font-weight: 800;
+}
+
+/* corpo do modal: tipografia mais "amigável" */
+.modal__content {
+  color: var(--modal-text);
+  font-size: 1.05rem;
+  line-height: 1.6;
+  max-height: calc(72vh - 120px);
+  overflow: auto;
+  padding-right: 6px;
+}
+
+/* style para strong dentro do conteúdo */
+.modal__content strong {
+  font-weight: 800;
+  color: #1f1630;
+}
+
+/* botão fechar minimalista */
+.modal__close {
+  position: absolute;
+  right: 12px;
+  top: 12px;
+  width: 36px;
+  height: 36px;
+  border-radius: 10px;
+  border: none;
+  background: rgba(255,255,255,0.9);
+  box-shadow: 0 6px 14px rgba(30,20,40,0.06);
+  cursor: pointer;
+  font-weight: 700;
+}
+
+/* responsividade */
+@media (max-width: 520px) {
+  .modal__dialog { padding: 20px; border-radius: 14px; }
+  .modal__ribbon { left: 16px; top: -16px; height: 32px; padding-left: 14px; font-size: .95rem; transform: rotate(-5deg); }
+  .modal__close { top: 10px; right: 10px; width: 32px; height: 32px; font-size: .9rem; }
+}
+
+/* pequena animação extra para o conteúdo entrar (opcional) */
+@keyframes pillarContentIn {
+  from { opacity: 0; transform: translateY(6px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.modal__content > * { animation: pillarContentIn .26s ease both; }
+
+/* responsividade */
+@media (max-width: 520px) {
+  .modal__dialog { padding: 18px; border-radius: 10px; }
+  .modal__title { font-size: 1.1rem; }
 }
 
 /* Fundo azul em toda a largura */
@@ -543,7 +699,7 @@ main section {
 /* ===== PÁGINA SOBRE O QUE É O ABC ===== */
 /* ===== SEÇÃO: O QUE É O ABC ===== */
 /* ===== SEÇÃO SALLUZ ===== */
-/* ===== SEÇÃO SALLUZ ===== */
+
 #salluz{
   position: relative;
   width: 100%;
@@ -562,7 +718,7 @@ main section {
 /* logo Salluz centralizado */
 #img-salluz{
   display: block;
-  height: clamp(70px, 10vw, 130px);
+  height: clamp(200px, 10vw, 130px);
   margin: 0 auto;
   filter: drop-shadow(0 4px 8px rgba(0,0,0,.08));
 }
@@ -606,101 +762,169 @@ main section {
   .salluz-top{ margin-bottom: 12px; }
 }
 
+/* ============================
+   INTRO METODOLOGIA
+   ============================ */
 #intro-metodologia {
-  position: relative;
-  width: 100%;
-  max-width: none;
-  padding: 100px 20px 160px;
-  background-color: #943f92; /* roxo */
-  overflow: hidden;
-  isolation: isolate;
+  background: #943f92;
+  padding: 40px 0;
   text-align: center;
+  width: 100vw !important;
+  max-width: 100% !important;
+  margin-right: calc(50% - 50vw) !important;
+  padding: 40px 0;
+  margin-left: 50%;
+  transform: translateX(-50%);
+  position: relative;
 }
 
-/* fundo amarelo decorativo */
-#intro-metodologia .decor.bg {
-  position: absolute;
-  inset: 0;
+#intro-metodologia * {
+  max-width: none !important;
+}
+/* Container interno */
+#intro-metodologia .intro-inner {
   width: 100%;
-  height: 100%;
-  object-fit: cover;
-  z-index: -1;
-  pointer-events: none;
-  opacity: 0.9;
+  max-width: 850px;
+  margin: 0 auto;
 }
 
-/* imagem principal */
-#intro-metodologia .foto-topo {
-  width: min(90%, 780px);
-  height: auto;
+/* ============================
+   PRIMEIRA IMAGEM
+   ============================ */
+#intro-metodologia .intro-card-top .intro-img {
+  width: 100%;
+  border-radius: 22px;
   display: block;
-  margin: 0 auto 30px;
-  border-radius: 20px;
-  box-shadow: 0 10px 25px rgba(0,0,0,0.2);
 }
 
-/* mascote central */
-#intro-metodologia .mascote {
-  width: clamp(120px, 22vw, 200px);
-  height: auto;
-  display: block;
-  margin: 20px auto 10px;
-  filter: drop-shadow(0 6px 8px rgba(0,0,0,.2));
+/* ============================
+   MASCOTE
+   ============================ */
+#intro-metodologia .intro-mascote {
+  width: 130px;
+  margin-top: -55px;   /* Sobresai sobre a imagem */
+  margin-bottom: 10px;
+  position: relative;
+  z-index: 2;
 }
 
-/* texto centralizado */
-#intro-metodologia p {
-  font-family: 'DynaPuff', cursive;
-  color: #fff;
+/* ============================
+   TEXTO CENTRAL
+   ============================ */
+#intro-metodologia .intro-copy p {
+  font-family: "DynaPuff", cursive;
   font-weight: 700;
-  font-size: clamp(16px, 2vw, 22px);
-  line-height: 1.5;
-  max-width: 900px;
-  margin: 0 auto 50px;
+  font-size: 20px;
+  line-height: 1.35;
+  width: 85%;
+  max-width: 650px;
+  margin: 0 auto 28px auto;
+  color: #fff;
 }
 
-/* segunda imagem */
-#intro-metodologia .foto-base {
-  width: min(90%, 780px);
-  height: auto;
+#intro-metodologia .intro-copy p strong {
+  color: #ffd166;
+}
+
+/* ============================
+   SEGUNDA IMAGEM
+   ============================ */
+#intro-metodologia .intro-card-bottom {
+  position: relative;
+}
+
+#intro-metodologia .intro-card-bottom .intro-img {
+  width: 100%;
+  border-radius: 22px;
   display: block;
-  margin: 0 auto 30px;
-  border-radius: 20px;
-  box-shadow: 0 10px 25px rgba(0,0,0,0.2);
 }
 
-/* botão “fale conosco” */
-#intro-metodologia .cta-conheca {
+/* ============================
+   TEXTO SOBREPOSTO NA IMAGEM 2
+   ============================ */
+#intro-metodologia .intro-overlay {
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 88%;
+  color: #fff;
+  font-family: "DynaPuff", cursive;
+  font-size: 28px;
+  font-weight: 700;
+  line-height: 1.25;
+  text-align: center;
+  text-shadow: 0 3px 6px rgba(0, 0, 0, 0.35);
+}
+
+/* ============================
+   BOTÃO
+   ============================ */
+#intro-metodologia .intro-cta {
   display: inline-block;
-  margin-top: 20px;
+  margin-top: 25px;
   padding: 12px 28px;
+  background: #e64f67;  
   border-radius: 999px;
-  background: #e64f67;
   color: #fff;
-  text-decoration: none;
-  font-family: 'DynaPuff', cursive;
+  font-family: "DynaPuff", cursive;
   font-weight: 700;
-  box-shadow: 0 12px 24px rgba(230,79,103,.35);
-  transition: transform .2s ease, box-shadow .2s ease;
+  font-size: 16px;
+  text-decoration: none;
+  box-shadow: 0px 8px 14px rgba(0,0,0,0.25);
+  transition: 0.2s ease;
 }
 
-#intro-metodologia .cta-conheca:hover {
+#intro-metodologia .intro-cta:hover {
   transform: translateY(-2px);
-  box-shadow: 0 16px 30px rgba(48,3,99,.4);
-    filter: brightness(1.02);
+  box-shadow: 0 14px 24px rgba(48, 3, 99, 0.45);
+  filter: brightness(1.02);
   background: #483483;
 }
 
-/* responsivo */
+/* ============================
+   RESPONSIVO
+   ============================ */
 @media (max-width: 768px) {
-  #intro-metodologia {
-    padding: 80px 10px 120px;
+  #intro-metodologia .intro-mascote {
+    width: 110px;
+    margin-top: -40px;
   }
-  #intro-metodologia .foto-topo,
-  #intro-metodologia .foto-base {
-    width: 95%;
+
+  #intro-metodologia .intro-overlay {
+    font-size: 22px;
+    width: 92%;
+    bottom: 16px;
   }
 }
+
+@media (max-width: 480px) {
+  #intro-metodologia .intro-mascote {
+    width: 95px;
+    margin-top: -32px;
+  }
+
+  #intro-metodologia .intro-copy p {
+    font-size: 17px;
+  }
+
+  #intro-metodologia .intro-overlay {
+    font-size: 18px;
+    bottom: 14px;
+  }
+
+  #intro-metodologia .intro-cta {
+    width: 80%;
+    padding: 12px 0;
+  }
+}
+
+/* Remove sombra e arredondamento das imagens */
+.clean-img {
+  box-shadow: none !important;
+  border-radius: 28px !important;
+}
+
 
 /* ===== PÁGINA CONTATO ===== */
 #contato {
@@ -791,7 +1015,7 @@ main section {
 }
 
 .btn-enviar {
-  background: #943f92;
+  background: #e64f67;
   color: #fff;
   border: none;
   border-radius: 999px;
@@ -1486,9 +1710,8 @@ body.pag-contato {
 #para-educadoras p{
   grid-column: 2 / 3;
   grid-row: 2 / 3;
-  margin: 0;
-  color: #696263;
-  font-family: 'Roboto', sans-serif;
+  margin: 0;  color: #483d8b;
+  font-family: 'DynaPuff', cursive;
   font-weight: 700;
   font-size: clamp(16px, 2vw, 22px);
   line-height: 1.5;

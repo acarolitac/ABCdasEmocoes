@@ -1,96 +1,112 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>O que é o ABC?</title>
-    <link rel="stylesheet" href="/assets/css/styles.css" />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>O que é o ABC?</title>
+  <link rel="stylesheet" href="/assets/css/styles.css" />
   <link href="https://fonts.googleapis.com/css2?family=DynaPuff:wght@400;600&display=swap" rel="stylesheet">
 </head>
 <body>
-    <!--MENU-->
-    <div id="header-holder"></div>
+  <!-- MENU -->
+  <div id="header-holder"></div>
 
-    <main class="container">
+  <main class="container">
 
+    <!-- ========== SOBRE ========== -->
     <section id="sobre">
-    <!-- faixa de mascotes -->
-        <ul class="sobre-mascotes">
-        <li><img src="/assets/img/ALEGRIA.png"  alt="Alegria"></li>
-        <li><img src="/assets/img/AMOR.png"     alt="Amor"></li>
-        <li><img src="/assets/img/GRATIDAO.png" alt="Gratidão"></li>
-        <li><img src="/assets/img/SURPRESA.png" alt="Surpresa"></li>
-        <li><img src="/assets/img/CALMA.png"    alt="Calma"></li>
-        </ul>
+      <!-- faixa de mascotes -->
+      <ul class="sobre-mascotes">
+        <li><img class="clean-img" src="/assets/img/ALEGRIA.png"  alt="Alegria"></li>
+        <li><img class="clean-img" src="/assets/img/AMOR.png"     alt="Amor"></li>
+        <li><img class="clean-img" src="/assets/img/GRATIDAO.png" alt="Gratidão"></li>
+        <li><img class="clean-img" src="/assets/img/SURPRESA.png" alt="Surpresa"></li>
+        <li><img class="clean-img" src="/assets/img/CALMA.png"    alt="Calma"></li>
+      </ul>
 
-    <div class="sobre-wrap">
+      <div class="sobre-wrap">
         <div class="sobre-grid">
-        <!-- texto com splash atrás -->
-        <div class="sobre-text">
+
+          <!-- Bloco do texto -->
+          <div class="sobre-text">
             <h2>O que é o ABC?</h2>
             <p>
-            O ABC das Emoções é um programa inovador de alfabetização emocional infantil
-            que ensina as crianças, desde a primeira infância, a identificar, nomear,
-            verbalizar e lidar com suas emoções.
+              O <strong>ABC das Emoções</strong> é um programa de <strong>Alfabetização Emocional Infantil</strong> exclusivo
+              para Escolas de Educação Infantil. A nossa metodologia foi desenvolvida para crianças de 2 a 5 anos e está
+              recheada de atividades lúdicas, divertidas e prazerosas a serem aplicadas diariamente, que visam desenvolver
+              e fortalecer as nossas crianças emocionalmente.
             </p>
-        </div>
+          </div>
 
-        <!-- imagem à direita -->
-        <figure class="sobre-foto">
-            <img src="/assets/img/sobre-foto.jpg" alt="Crianças em atividade de respiração">
-        </figure>
-        </div>
-    </div>
-    </section>
+          <!-- Bloco da imagem -->
+          <figure class="sobre-foto">
+            <img class="clean-img" src="/assets/img/atividadeRespiracao.png" alt="Crianças em atividade de respiração">
+          </figure>
 
+        </div> <!-- /.sobre-grid -->
+      </div> <!-- /.sobre-wrap -->
+    </section> <!-- /#sobre -->
+
+    <!-- ========== SALLUZ ========== -->
     <section id="salluz">
-    <div class="salluz-top">
-        <img id="img-salluz" src="/assets/img/logo-salluz.svg" alt="Salluz Educação">
-        <img class="mascote-cerebro" src="/assets/img/CEREBRO.png" alt="Mascote Cérebro">
-    </div>
+      <div class="salluz-top">
+        <!-- id corrigido para #img-salluz conforme seu CSS -->
+        <img id="img-salluz" src="/assets/img/salluz_logo.png" alt="Salluz Educação">
+        <img class="mascote-cerebro clean-img" src="/assets/img/CEREBRO.png" alt="Mascote Cérebro">
+      </div>
 
-    <div class="salluz-text">
+      <div class="salluz-text">
         <p>
-        Criado pela <strong>Salluz Educação</strong>, o programa está integrado à nossa rede e nasce
-        do desejo profundo de transformar o futuro emocional das novas gerações.
+          Criado pela <strong>Salluz Educação</strong>, o programa está integrado à nossa rede e nasce
+          do desejo profundo de transformar o futuro emocional das novas gerações.
         </p>
-    </div>
+      </div>
     </section>
 
     <section id="intro-metodologia">
-    <!-- Imagem principal -->
-    <img class="foto-topo" src="/assets/img/metodologia-foto1.jpg" alt="Crianças em aula de ciências">
 
-    <!-- Mascote central -->
-    <img class="mascote" src="/assets/img/GRATIDAO.png" alt="Mascote Gratidão">
+      <div class="intro-inner">
 
-    <!-- Texto -->
-    <p>
-        Nossa metodologia une fundamentos sólidos da <strong>neurociência</strong>,
-        <strong>psicologia positiva</strong>, <strong>pedagogia afetiva</strong>,
-        <strong>educação emocional</strong> e <strong>arte-educação</strong> com o que há de mais precioso:
-        os princípios da Palavra de Deus.
-    </p>
+        <!-- IMAGEM 1 -->
+        <figure class="intro-card intro-card-top">
+          <img class="intro-img" src="/assets/img/atividade3.png" alt="Crianças em aula de ciências">
+        </figure>
 
-    <!-- Segunda imagem opcional -->
-    <img class="foto-base" src="/assets/img/metodologia-foto2.jpg" alt="Crianças na sala de aula">
+        <!-- MASCOTE -->
+        <img class="intro-mascote" src="/assets/img/GRATIDAO.png" alt="Mascote">
 
-    <!-- Botão -->
-    <a class="cta-conheca" href="/pages/contato.html">Fale conosco</a>
+        <!-- TEXTO CENTRAL -->
+        <div class="intro-copy">
+          <p>
+            Nossa metodologia une fundamentos sólidos da <strong>neurociência</strong>,
+            <strong>psicologia positiva</strong>, <strong>pedagogia afetiva</strong>,
+            <strong>educação emocional</strong> e <strong>arte-educação</strong> com o que há de mais precioso:
+            os princípios da Palavra de Deus.
+          </p>
+        </div>
 
-    <!-- Faixa decorativa de fundo -->
-    <img class="decor bg" src="/assets/img/amarelo.svg" alt="" aria-hidden="true">
+        <!-- SEGUNDA IMAGEM COM OVERLAY -->
+        <figure class="intro-card intro-card-bottom">
+          <img class="intro-img" src="/assets/img/atividade4.png" alt="Crianças na sala de aula">
+          <div class="intro-overlay">
+            Trabalhamos com ciência, arte e valores universais que dialogam com toda e qualquer comunidade escolar.
+          </div>
+        </figure>
+
+        <!-- BOTÃO -->
+        <a class="intro-cta" href="/pages/contato.html">Fale conosco</a>
+
+      </div>
+
     </section>
 
-    
-    </main>
+  </main>
 
-    <!--FOOTER-->
-    <div id="footer-holder"></div>   
-    
+  <!-- FOOTER -->
+  <div id="footer-holder"></div>
   <!-- WHATSAPP FLOAT (partial) -->
   <div id="whatsapp-holder"></div>
 
-    <script src="/assets/javascript/script.js"></script>
+  <script src="/assets/javascript/script.js"></script>
 </body>
 </html>
